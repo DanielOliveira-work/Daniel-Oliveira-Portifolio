@@ -3,15 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniel Oliveira | Portfólio</title>
+  <title>Daniel Oliveira | Projetos</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="hero">
-    <a href="sobre.html" class="hero-photo-wrap" aria-label="Ver sobre mim">
-      <div class="hero-red-circle"></div>
-      <img src="assets/danielpng.png" alt="Daniel Oliveira" class="hero-photo" />
-    </a>
     <div class="hero-frame">
       <div class="hero-head">
         <div class="hero-meta">
@@ -35,26 +31,46 @@
         <a href="projetos.html" data-i18n="hero.nav.gallery">Projetos</a>
         <a href="#contato" data-i18n="hero.nav.contacts">Contato</a>
       </nav>
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <span class="eyebrow" data-i18n="hero.eyebrow">Experiência Full-stack — feita sob medida</span>
-          <h1 class="hero-title">
-            <span class="hero-name" data-i18n="hero.name">Daniel Oliveira,</span>
-            <span class="hero-highlight" data-i18n="hero.role">desenvolvedor full-stack</span>
-          </h1>
-          <p data-i18n="hero.description">
-            Desenvolvedor full-stack com experiência em gestão de projetos. Desenvolvo soluções completas com rapidez, do back-end ao front-end, entregando resultados alinhados ao seu negócio.
-          </p>
-          <div class="hero-actions">
-            <a class="hero-primary" href="schedule.html" data-i18n="hero.cta.primary">Agendar chamada de projeto</a>
-            <button class="hero-secondary" type="button" data-scroll="#contato" data-i18n="hero.cta.secondary">Ver mais</button>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="hero-fade-bottom" aria-hidden="true"></div>
   </header>
   <main>
+    <section id="projetos" class="section">
+      <h2 data-i18n="projects.title">Projetos</h2>
+      <div class="projects-slider" data-slider>
+        <div class="slider-viewport">
+          <ul class="slider-track">
+            <li class="project-card" data-slide>
+              <header class="project-head">
+                <span class="project-pill" data-i18n="projects.card1.pill">Blog · Fotografia</span>
+                <span class="project-count">01</span>
+              </header>
+              <img src="assets/Captura de tela 2025-12-14 125703.png" alt="Tela do blog de fotografia com galeria de imagens" class="project-image" />
+              <h3 data-i18n="projects.card1.title">Blog de Fotografia</h3>
+              <p data-i18n="projects.card1.desc">Blog de fotografia com galeria de imagens para destacar trabalhos visuais.</p>
+              <p class="project-meta" data-i18n="projects.card1.details">Implementado com HTML, CSS e JavaScript, focado em vitrine de fotos.</p>
+              <button class="project-cta" type="button" data-i18n="projects.cta">Ver estudo</button>
+            </li>
+            <li class="project-card" data-slide>
+              <header class="project-head">
+                <span class="project-pill" data-i18n="projects.card4.pill">E-commerce · Moda</span>
+                <span class="project-count">02</span>
+              </header>
+              <img src="assets/Captura de Tela 2026-04-02 às 09.19.25.png" alt="Tela do site Brechó Jujuzinha" class="project-image" />
+              <h3 data-i18n="projects.card4.title">Brechó Jujuzinha</h3>
+              <p data-i18n="projects.card4.desc">Loja online de brechó com catálogo de produtos e experiência de compra moderna.</p>
+              <p class="project-meta" data-i18n="projects.card4.details">Desenvolvido com Next.js e Tailwind CSS, com foco em UX e performance.</p>
+              <a class="project-cta" href="https://brecho-jujuzinha.vercel.app" target="_blank" rel="noopener" data-i18n="projects.card4.cta">Ver projeto</a>
+            </li>
+          </ul>
+        </div>
+        <div class="slider-nav">
+          <button class="slider-arrow" type="button" data-slider-prev aria-label="Projeto anterior" data-i18n="projects.prev" data-i18n-attr="aria-label">&#8249;</button>
+          <div class="slider-dots" data-slider-dots></div>
+          <button class="slider-arrow" type="button" data-slider-next aria-label="Próximo projeto" data-i18n="projects.next" data-i18n-attr="aria-label">&#8250;</button>
+        </div>
+      </div>
+    </section>
     <section id="contato" class="section">
       <h2 data-i18n="contact.title">Contato</h2>
       <div class="contact-links" role="list">

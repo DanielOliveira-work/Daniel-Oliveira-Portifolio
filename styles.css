@@ -130,6 +130,16 @@ body::before {
   z-index: 0;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('assets/logo-lateral.png') right 5% center / auto 80% no-repeat;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: -1;
+}
+
 a {
   color: inherit;
 }
@@ -174,11 +184,25 @@ small {
   z-index: 0;
 }
 
+/* fade suave na borda inferior do hero */
+.hero-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  z-index: 4;
+}
+
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('assets/danielimage.png') left 10% center / auto 85% no-repeat;
+  background:
+    url('assets/danielimage.png') left 10% center / auto 85% no-repeat,
+    url('assets/logo-lateral.png') right 5% center / auto 80% no-repeat;
   opacity: 0.30;
   pointer-events: none;
   z-index: 2;
