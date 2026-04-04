@@ -192,14 +192,15 @@ small {
 
 /* fade suave na borda inferior do hero */
 .hero-fade-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, transparent, var(--bg));
-  pointer-events: none;
-  z-index: 4;
+  display: none;
+}
+
+.hero--compact {
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+}
+
+.hero--compact .hero-frame {
+  gap: 1rem;
 }
 
 .hero::after {
@@ -580,6 +581,7 @@ body[data-theme="light"] .back-btn {
   color: #08090f;
   box-shadow: 0 24px 60px -28px rgba(255, 51, 92, 0.6);
   border: none;
+  white-space: nowrap;
 }
 
 .hero-primary:hover,
