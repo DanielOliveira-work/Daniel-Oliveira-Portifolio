@@ -4,29 +4,108 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daniel Oliveira | Portfólio</title>
-  <link rel="stylesheet" href="styles.css">
+  <script>
+    const t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.style.colorScheme = t;
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.setAttribute('data-theme', t); document.body.classList.toggle('theme-light', t === 'light'); document.body.classList.toggle('theme-dark', t !== 'light');
+      
+    });
+  </script>
+  <link rel="stylesheet" href="styles.css?v=2">
+  <style>
+    /* Splash sempre escuro, independente do tema */
+    #splash { background: #040509 !important; }
+    #splash, #splash p, #splash span, #splash div,
+    html[data-theme="light"] #splash,
+    html[data-theme="light"] #splash p,
+    html[data-theme="light"] #splash span {
+      color: #f4f6ff !important;
+    }
+    #splash #splash-name,
+    html[data-theme="light"] #splash #splash-name {
+      color: rgba(244,246,255,0.45) !important;
+    }
+    #splash span[style],
+    html[data-theme="light"] #splash span {
+      color: #ff335c !important;
+    }
+  </style>
 </head>
 <body class="page-home">
+  <!-- Splash screen -->
+  <div id="splash" style="
+    position: fixed; inset: 0; z-index: 9999;
+    background: #040509 !important;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: opacity 0.6s ease;
+  ">
+    <p id="splash-phrase" style="
+      font-size: clamp(1.6rem, 5vw, 3rem);
+      font-weight: 300; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #f4f6ff !important;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    ">Arquitetando o <span style="color:#ff335c !important">amanhã</span></p>
+    <div id="splash-line" style="
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, #ff335c, transparent);
+      transition: width 0.7s ease;
+    "></div>
+    <p id="splash-name" style="
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      letter-spacing: 0.55em; text-transform: uppercase;
+      color: rgba(244,246,255,0.45) !important;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    ">Daniel Oliveira</p>
+  </div>
+  <script>
+    // Splash — sempre que carregar a página
+    const splashEl = document.getElementById('splash');
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        document.getElementById('splash-phrase').style.opacity = '1';
+        document.getElementById('splash-phrase').style.transform = 'translateY(0)';
+      }, 400);
+      setTimeout(() => {
+        document.getElementById('splash-line').style.width = '180px';
+      }, 1200);
+      setTimeout(() => {
+        document.getElementById('splash-name').style.opacity = '1';
+        document.getElementById('splash-name').style.transform = 'translateY(0)';
+      }, 1500);
+      setTimeout(() => {
+        splashEl.style.opacity = '0';
+        setTimeout(() => splashEl.remove(), 700);
+      }, 4000);
+    });
+  </script>
   <header class="hero">
-    <a href="sobre.html" class="hero-photo-wrap" aria-label="Ver sobre mim">
-      <div class="hero-red-circle"></div>
-      <img src="assets/danielpng.png" alt="Daniel Oliveira" class="hero-photo" />
-    </a>
     <div class="hero-frame">
+      <a href="sobre.html" class="hero-photo-wrap" aria-label="Ver sobre mim">
+        <div class="hero-red-circle"></div>
+        <img src="assets/danielpng.png" alt="Daniel Oliveira" class="hero-photo" />
+      </a>
       <div class="hero-head">
         <div class="hero-meta">
           <span class="hero-badge" data-i18n="hero.badge">PORTFOLIO 2026</span>
           <span class="hero-progress" aria-hidden="true"><span class="hero-progress-bar"></span></span>
-          <span class="hero-step" data-i18n="hero.step" data-i18n-html="true">01<span class="divider"></span>03</span>
+          <span class="hero-tagline-meta">Arquitetando o <span style="color:#ff335c">amanhã</span></span>
         </div>
-        <div class="lang-switch" role="group" aria-label="Selecionar idioma">
-          <button class="lang-option is-active" type="button" data-lang="pt" data-i18n="lang.pt">PT</button>
-          <button class="lang-option" type="button" data-lang="en" data-i18n="lang.en">EN</button>
+        <div class="hero-head-right">
+          <div class="lang-switch" role="group" aria-label="Selecionar idioma">
+            <button class="lang-option is-active" type="button" data-lang="pt" data-i18n="lang.pt">PT</button>
+            <button class="lang-option" type="button" data-lang="en" data-i18n="lang.en">EN</button>
+          </div>
+          <button class="theme-toggle" type="button" aria-label="Alternar tema" id="themeToggle">
+            <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
         </div>
-        <button class="theme-toggle" type="button" aria-label="Alternar tema" id="themeToggle">
-          <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-          <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        </button>
       </div>
       <nav class="hero-nav" aria-label="Menu principal">
         <a href="sobre.html" data-i18n="hero.nav.about">Sobre</a>
@@ -40,20 +119,19 @@
             <span class="hero-name" data-i18n="hero.name">Daniel Oliveira,</span>
             <span class="hero-highlight" data-i18n="hero.role">desenvolvedor full-stack</span>
           </h1>
-          <p data-i18n="hero.description">
-            Desenvolvedor full-stack com experiência em gestão de projetos. Desenvolvo soluções completas com rapidez, do back-end ao front-end, entregando resultados alinhados ao seu negócio.
-          </p>
-          <div class="hero-actions">
-            <a class="hero-primary" href="schedule.html" data-i18n="hero.cta.primary">Agendar chamada de projeto</a>
+          <div class="hero-card">
+            <p data-i18n="hero.description">
+              Desenvolvedor full-stack com experiência em gestão de projetos. Desenvolvo soluções completas com rapidez, do back-end ao front-end, entregando resultados alinhados ao seu negócio.
+            </p>
+            <div class="hero-actions">
+              <a class="hero-primary" href="schedule.html" data-i18n="hero.cta.primary">Agendar chamada de projeto</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="hero-fade-bottom" aria-hidden="true"></div>
   </header>
-  <footer class="footer">
-    <span data-i18n="footer.copy">2026 Daniel Oliveira</span>
-  </footer>
   <script src="script.js"></script>
 </body>
 </html>

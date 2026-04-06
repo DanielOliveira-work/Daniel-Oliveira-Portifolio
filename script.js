@@ -17,14 +17,15 @@ const translations = {
     'hero.cta.secondary': 'Ver mais',
 
     'about.title': 'Sobre mim',
-    'about.tagline': '🚀 Desenvolvedor Full-Stack | Gestão de Projetos & Entrega Ágil',
-    'about.intro': 'Sou um desenvolvedor full-stack com experiência em gestão de projetos, capaz de construir soluções completas do conceito à entrega com rapidez e precisão. Atualmente curso Análise e Desenvolvimento de Sistemas (ADS), unindo o rigor acadêmico com a prática intensa do mercado.',
-    'about.frontend.title': 'Front-end',
-    'about.frontend.desc': 'Interfaces modernas, intuitivas e responsivas. Foco em UX de alto nível que encanta e engaja, com atenção a microinterações e performance.',
-    'about.backend.title': 'Back-end',
-    'about.backend.desc': 'Lógica de negócio com código limpo, seguro e escalável. Construo APIs e integrações pensando em performance e manutenção.',
-    'about.closing': 'Minha marca registrada é a rapidez e a precisão. Desenvolvo projetos otimizados, alinhados aos objetivos do negócio e prontos para gerar impacto real.',
-    'about.cta': 'Se você busca um parceiro que domina a stack completa, tem visão de gestão e entrega com velocidade, vamos construir algo notável.',
+    'about.tagline': '🚀 Desenvolvedor Full-Stack | Gestão de Projetos & Visão Criativa',
+    'about.intro': 'Sou um desenvolvedor focado em transformar ideias complexas em soluções digitais de alto impacto. Atualmente cursando Análise e Desenvolvimento de Sistemas (ADS), combino o rigor da engenharia de software com a agilidade da gestão moderna.',
+    'about.frontend.title': 'Front-end com Olhar de Fotógrafo',
+    'about.frontend.desc': 'Não apenas código, mas interfaces intuitivas e responsivas. Minha paixão pela fotografia apurou minha percepção visual, garantindo um UX/UI que preza pela harmonia e performance.',
+    'about.backend.title': 'Back-end Robusto',
+    'about.backend.desc': 'Lógica de negócio com código limpo, seguro e escalável. Construo APIs pensando no futuro da manutenção e na velocidade da entrega.',
+    'about.closing': 'Minha marca registrada é a precisão. Acredito que o software, assim como uma boa fotografia, depende do detalhe e do timing perfeito.',
+    'about.cta': 'Se você busca um parceiro que domina a stack completa e entrega com velocidade, vamos construir algo notável.',
+    'about.photo': '📷 Nas horas vagas, exploro o mundo através das lentes. Confira meu olhar no Instagram.',
 
     'projects.title': 'Projetos',
     'projects.card1.pill': 'Blog · Fotografia',
@@ -92,13 +93,13 @@ const translations = {
     'hero.cta.secondary': 'See more',
 
     'about.title': 'About me',
-    'about.tagline': '🚀 Full-Stack Developer | Project Management & Agile Delivery',
-    'about.intro': 'I am a full-stack developer with experience in project management, able to build complete solutions from concept to delivery with speed and precision. I am currently studying Systems Analysis and Development (ADS), combining academic rigor with intense market practice.',
-    'about.frontend.title': 'Front-end',
-    'about.frontend.desc': 'Modern, intuitive and responsive interfaces. Focus on high-level UX that delights and engages, with attention to microinteractions and performance.',
-    'about.backend.title': 'Back-end',
-    'about.backend.desc': 'Business logic with clean, secure and scalable code. I build APIs and integrations with performance and maintainability in mind.',
-    'about.closing': 'My trademark is speed and precision. I deliver optimized projects, aligned with business goals and ready to create real impact.',
+    'about.tagline': '🚀 Full-Stack Developer | Project Management & Creative Vision',
+    'about.intro': 'I am a developer focused on transforming complex ideas into high-impact digital solutions. Currently studying Systems Analysis and Development (ADS), I combine software engineering rigor with modern management agility.',
+    'about.frontend.title': "Front-end with a Photographer's Eye",
+    'about.frontend.desc': 'Not just code, but intuitive and responsive interfaces. My passion for photography sharpened my visual perception, ensuring UX/UI that values harmony and performance.',
+    'about.backend.title': 'Robust Back-end',
+    'about.backend.desc': 'Business logic with clean, secure and scalable code. I build APIs thinking about future maintenance and delivery speed.',
+    'about.closing': 'My trademark is precision. I believe software, like a great photograph, depends on detail and perfect timing.',
     'about.cta': 'If you are looking for a partner who masters the full stack and delivers value fast, let’s build something remarkable.',
 
     'projects.title': 'Projects',
@@ -369,8 +370,10 @@ function setupSlider() {
   track.addEventListener('touchstart', (e) => onDragStart(e.touches[0].clientX), { passive: true });
   track.addEventListener('touchend', (e) => onDragEnd(e.changedTouches[0].clientX));
 
+  let resizeTimer;
   window.addEventListener('resize', () => {
-    goToSlide(currentIndex);
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => goToSlide(currentIndex), 100);
   });
 
   createDots();
@@ -380,16 +383,40 @@ function setupSlider() {
 function setupThemeToggle() {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+    localStorage.setItem('theme', theme);
+
+    // injeta/atualiza style tag para forçar cor em tempo real
+    let styleTag = document.getElementById('theme-override');
+    if (!styleTag) {
+      styleTag = document.createElement('style');
+      styleTag.id = 'theme-override';
+      document.head.appendChild(styleTag);
+    }
+    if (theme === 'light') {
+      styleTag.textContent = `
+        *:not(.footer-links a):not(.footer-links a *):not(.footer-links):not(#splash):not(#splash *) { color: #0d0f1a !important; }
+        .hero-highlight, .hero-badge { color: #ff335c !important; }
+        .hero-primary, .schedule-submit { color: #08090f !important; }
+        .lang-option.is-active { color: #ffffff !important; }
+        .footer-links a { color: rgba(245,245,245,0.7) !important; }
+        .footer-links a:hover { color: #ff335c !important; }
+      `;
+    } else {
+      styleTag.textContent = '';
+    }
+  }
+
   const saved = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  document.body.setAttribute('data-theme', saved);
+  applyTheme(saved);
 
   btn.addEventListener('click', () => {
-    const current = document.body.getAttribute('data-theme') || 'dark';
-    const next = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    document.body.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
   });
 }
 
