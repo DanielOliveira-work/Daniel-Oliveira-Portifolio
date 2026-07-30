@@ -68,6 +68,11 @@ html[data-theme="light"] .lang-option.is-active {
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   margin: 0;
   line-height: 1.65;
@@ -85,10 +90,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
   }
   body.page-home .hero {
     flex: 1;
     min-height: 0;
+    padding: 0;
   }
   body.page-home .footer {
     flex-shrink: 0;
@@ -102,11 +110,17 @@ body {
 }
 
 body[data-theme="light"] .hero-frame {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.15);
   border-color: transparent;
   box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+
+body[data-theme="light"] .hero-card,
+html[data-theme="light"] .hero-card {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 body[data-theme="light"] .hero-badge {
@@ -168,16 +182,7 @@ body[data-theme="light"] .lang-switch {
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  background: url('assets/danielimage.png') left -2% bottom -5% / auto 92% no-repeat;
-  opacity: 0.30;
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 body::after {
@@ -365,8 +370,9 @@ html[data-theme="light"] .bio-cta {
   color: #0d0f1a !important;
 }
 
-.hero::after {
-  content: "";
+/* Imagens de fundo do hero — div real (não pseudo-elemento)
+   fica atrás do hero-frame (z-index: 2) via z-index: 1 */
+.hero-bg-layer {
   position: absolute;
   inset: 0;
   background:
@@ -374,7 +380,12 @@ html[data-theme="light"] .bio-cta {
     url('assets/logo-lateral.png') right 5% center / auto 80% no-repeat;
   opacity: 0.30;
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
+}
+
+/* ::after desativado — substituído por .hero-bg-layer */
+.hero::after {
+  display: none;
 }
 
 /* Foto + círculo — desktop: absolute dentro do hero-frame */
@@ -443,18 +454,19 @@ html[data-theme="light"] .bio-cta {
   position: relative;
   width: min(1200px, 90vw);
   margin: 0 auto;
-  background: rgba(8, 10, 16, 0.78);
+  background: rgba(8, 10, 16, 0.92);
   border-radius: clamp(28px, 5vw, 48px);
   padding: clamp(2.75rem, 5vw, 4rem) clamp(2.5rem, 5vw, 3.8rem);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 40px 120px -48px rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(24px);
   display: flex;
   flex-direction: column;
   gap: clamp(2rem, 6vw, 3.5rem);
-  z-index: 1;
+  z-index: 2;
   box-sizing: border-box;
   overflow: visible;
+  /* isolation: isolate REMOVIDO — estava impedindo o z-index do hero-card
+     de competir com elementos fora do frame (como ::after do hero) */
 }
 .hero-head {
   display: flex;
@@ -695,6 +707,8 @@ body[data-theme="light"] .back-btn {
   flex-direction: column;
   gap: clamp(1.5rem, 4vw, 2.4rem);
   max-width: 560px;
+  position: relative;
+  z-index: 10;
 }
 
 .hero-orbit {
@@ -772,15 +786,39 @@ body[data-theme="light"] .eyebrow {
 }
 
 .hero-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff !important;
+  background-color: #ffffff !important;
   border-radius: 24px;
   padding: 1.5rem 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   position: relative;
-  z-index: 5;
+  z-index: 9999 !important;
   max-width: 480px;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  overflow: hidden;
+  /* Garante camada de composição dedicada no GPU */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Fundo branco sólido como pseudo-elemento de reforço */
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  z-index: 0;
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+/* Todo conteúdo do card acima do ::before */
+.hero-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-card p {
@@ -807,8 +845,8 @@ body[data-theme="light"] .eyebrow {
 }
 
 .hero-primary {
-  background: linear-gradient(120deg, #ff335c 0%, #ff0038 100%);
-  color: #08090f;
+  background: #ff1a45;
+  color: #ffffff;
   position: relative;
   z-index: 5;
   box-shadow: 0 24px 60px -28px rgba(255, 51, 92, 0.6);
@@ -1828,6 +1866,9 @@ html[data-theme="light"] .footer-links a:hover {
   }
 
   .hero::after {
+    display: none !important;
+  }
+  .hero-bg-layer {
     background:
       url('assets/danielimage.png') calc(50% - 250px) bottom / auto 95% no-repeat,
       url('assets/logo-lateral.png') right 5% center / auto 60% no-repeat;
@@ -2535,6 +2576,9 @@ html[data-theme="light"] .form-grid label {
     gap: clamp(1.5rem, 4vw, 2.5rem);
   }
   .hero::after {
+    display: none !important;
+  }
+  .hero-bg-layer {
     background:
       url('assets/danielimage.png') left -2% bottom -5% / auto 75% no-repeat,
       url('assets/logo-lateral.png') right 4% center / auto 65% no-repeat;
@@ -2719,6 +2763,9 @@ html[data-theme="light"] .form-grid label {
     min-height: auto;
   }
   .hero::after {
+    display: none !important;
+  }
+  .hero-bg-layer {
     background:
       url('assets/logo-lateral.png') right 3% bottom 10% / auto 40% no-repeat;
     opacity: 0.12;

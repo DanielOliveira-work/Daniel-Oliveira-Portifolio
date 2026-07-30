@@ -207,66 +207,28 @@ function setupScheduleForm() {
     const firstName = form.firstName?.value.trim();
     const lastName = form.lastName?.value.trim();
     const phone = form.phone?.value.trim();
-    const email = form.email?.value.trim();
-    const contactPreference = form.contactPreference?.value || 'email';
 
-    if (!firstName || !phone || !email) {
+    if (!firstName || !phone) {
       if (statusEl) {
-        statusEl.textContent = translations[currentLang]['schedule.form.status.validation'];
+        statusEl.textContent = translations[currentLang]['schedule.form.status.validation'] || 'Preencha nome e telefone para continuar.';
         statusEl.className = 'form-status is-error';
       }
       return;
-    }
-
-    if (!window.emailjs || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      if (statusEl) {
-        statusEl.textContent = translations[currentLang]['schedule.form.status.error'];
-        statusEl.className = 'form-status is-error';
-      }
-      return;
-    }
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
     }
 
     if (statusEl) {
       statusEl.textContent = '';
       statusEl.className = 'form-status';
     }
-
-    if (window.emailjs && EMAILJS_PUBLIC_KEY) {
-      window.emailjs.init(EMAILJS_PUBLIC_KEY);
-    }
-
-    const templateParams = {
-      user_name: firstName,
-      user_surname: lastName,
-      user_phone: phone,
-      user_email: email,
-      contactPreference,
-    };
-
-    window.emailjs
-      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-      .then(() => {
-        if (statusEl) {
-          statusEl.textContent = translations[currentLang]['schedule.form.status.success'];
-          statusEl.className = 'form-status is-success';
-        }
-        form.reset();
-      })
-      .catch(() => {
-        if (statusEl) {
-          statusEl.textContent = translations[currentLang]['schedule.form.status.error'];
-          statusEl.className = 'form-status is-error';
-        }
-      })
-      .finally(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-        }
-      });
+    
+    // Construct WhatsApp message
+    const nomeCompleto = lastName ? `${firstName} ${lastName}` : firstName;
+    const message = `Olá, me chamo ${nomeCompleto}. Meu telefone é ${phone}. Gostaria de falar sobre um projeto.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/5511965746815?text=${encodedMessage}`;
+    
+    // Open in new tab
+    window.open(whatsappUrl, '_blank');
   });
 }
 
