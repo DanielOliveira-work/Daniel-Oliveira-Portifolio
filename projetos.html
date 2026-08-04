@@ -19,157 +19,145 @@
   <link rel="stylesheet" href="styles.css?v=3">
   <style>
     /* Reset para esta página */
-    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-
-    body { display: flex; flex-direction: column; height: 100vh; }
-
+    html, body { margin: 0; padding: 0; min-height: 100vh; }
+    body { display: flex; flex-direction: column; }
     body::before, body::after { display: none !important; }
 
-    /* Fundo escuro padrão, claro no modo light */
-    body { background: #040509; }
+    /* Fundo escuro padrão com leve tom quente como na imagem */
+    body { background: #110e0d; }
     html[data-theme="light"] body,
     body[data-theme="light"] { background: #f0f2f8; }
 
-    /* Carrossel */
-    .proj-stage {
+    .gallery-container {
       flex: 1;
-      display: flex;
-      flex-direction: row;
-      overflow: hidden;
-      position: relative;
-      min-height: 0;
-    }
-
-    .proj-track {
-      display: flex;
-      flex-direction: row;
-      height: 100%;
       width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      gap: 3px;
-      cursor: grab;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2rem;
     }
 
-    .proj-track:active { cursor: grabbing; }
-    .proj-track::-webkit-scrollbar { display: none; }
-
-    .proj-item {
-      flex: 0 0 clamp(280px, 33vw, 460px);
-      height: 100%;
-      scroll-snap-align: start;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: block;
-      background: #111;
-    }
-
-    .proj-item-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.5);
-      transition: transform 0.6s ease, filter 0.4s ease;
-    }
-
-    .proj-item:hover .proj-item-bg {
-      transform: scale(1.06);
-      filter: brightness(0.65);
-    }
-
-    .proj-item-top {
-      position: absolute;
-      top: 1.75rem;
-      left: 1.75rem;
-      right: 1.75rem;
-      z-index: 2;
-      transition: transform 0.4s ease;
-    }
-
-    .proj-item:hover .proj-item-top { transform: translateY(-8px); }
-
-    .proj-item-cat {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 0.6rem;
-    }
-
-    .proj-item-name {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.15;
+    .gallery-title {
+      font-family: 'Oswald', 'Bebas Neue', 'Impact', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      color: #dfd5c5;
       margin: 0;
     }
+    
+    .gallery-link {
+      color: #cc4444;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    .gallery-link:hover { opacity: 0.8; }
 
-    .proj-item-label {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 1.5rem;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      z-index: 2;
-      transition: color 0.3s ease;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 2rem;
     }
 
-    .proj-item:hover .proj-item-label { color: rgba(255,255,255,0.65); }
-
-    /* Barra inferior com prev/next */
-    .proj-bar {
-      flex-shrink: 0;
+    .gallery-card {
+      text-decoration: none;
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0.65rem 1.75rem;
-      background: rgba(4,5,9,0.98);
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
     }
 
-    html[data-theme="light"] .proj-bar,
-    body[data-theme="light"] .proj-bar {
-      background: rgba(220,222,235,0.98);
+    html[data-theme="light"] .gallery-card,
+    body[data-theme="light"] .gallery-card {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
     }
 
-    html[data-theme="light"] .proj-btn,
-    body[data-theme="light"] .proj-btn {
-      color: rgba(13,15,26,0.6);
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35);
     }
 
-    html[data-theme="light"] .proj-btn:hover,
-    body[data-theme="light"] .proj-btn:hover {
-      color: #0d0f1a;
+    html[data-theme="light"] .gallery-card:hover,
+    body[data-theme="light"] .gallery-card:hover {
+      border-color: rgba(255, 255, 255, 1);
+      background: rgba(255, 255, 255, 0.7);
     }
 
-    .proj-btn {
-      background: none;
-      border: none;
-      color: rgba(235,241,255,0.5);
+    .gallery-img-wrapper {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-card:hover .gallery-img {
+      transform: scale(1.05);
+    }
+
+    .gallery-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .gallery-name {
+      margin: 0;
       font-family: 'Inter', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.3em;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #dfd5c5;
       text-transform: uppercase;
-      cursor: pointer;
-      padding: 0.4rem 0;
-      transition: color 0.25s ease;
     }
 
-    .proj-btn:hover { color: #fff; }
+    .gallery-cat {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-title {
+        font-size: 1.5rem;
+      }
+      .gallery-container {
+        padding: 2rem 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -199,42 +187,43 @@
     </div>
   </nav>
 
-  <div class="proj-stage">
-    <div class="proj-track" id="projTrack">
-
-      <a href="projeto-fotografia.html" class="proj-item">
-        <div class="proj-item-bg" style="background-image:url('assets/Captura de tela 2025-12-14 125703.png')"></div>
-        <div class="proj-item-top">
-          <span class="proj-item-cat">Blog · Fotografia</span>
-          <h2 class="proj-item-name">Blog de<br>Fotografia</h2>
-        </div>
-        <span class="proj-item-label">FOTOGRAFIA</span>
-      </a>
-
-      <a href="projeto-brecho.html" class="proj-item">
-        <div class="proj-item-bg" style="background-image:url('assets/Juju.png')"></div>
-        <div class="proj-item-top">
-          <span class="proj-item-cat">E-commerce · Moda</span>
-          <h2 class="proj-item-name">Brechó<br>Jujuzinha</h2>
-        </div>
-        <span class="proj-item-label">E-COMMERCE</span>
-      </a>
-
-      <a href="projeto-nexo.html" class="proj-item">
-        <div class="proj-item-bg" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);"></div>
-        <div class="proj-item-top">
-          <span class="proj-item-cat">App · Controle Financeiro e Anotações</span>
-          <h2 class="proj-item-name">Nexo<br>App</h2>
-        </div>
-        <span class="proj-item-label">FINANÇAS</span>
-      </a>
-
+  <div class="gallery-container">
+    <div class="gallery-header">
+      <h1 class="gallery-title">FEATURED WORK</h1>
+      <a href="#" class="gallery-link">View more projects &rarr;</a>
     </div>
-  </div>
+    
+    <div class="gallery-grid">
+      <a href="projeto-nexo.html" class="gallery-card">
+        <div class="gallery-img-wrapper">
+          <div class="gallery-img" style="background-image:url('assets/nexo-dashboard.png');"></div>
+        </div>
+        <div class="gallery-info">
+          <h2 class="gallery-name">NEXO APP</h2>
+          <span class="gallery-cat">UI/UX DESIGN / WEB DEV</span>
+        </div>
+      </a>
 
-  <div class="proj-bar">
-    <button class="proj-btn" id="projPrev">← PREV</button>
-    <button class="proj-btn" id="projNext">NEXT →</button>
+      <a href="projeto-fotografia.html" class="gallery-card">
+        <div class="gallery-img-wrapper">
+          <div class="gallery-img" style="background-image:url('assets/Captura de tela 2025-12-14 125703.png');"></div>
+        </div>
+        <div class="gallery-info">
+          <h2 class="gallery-name">BLOG DE FOTOGRAFIA</h2>
+          <span class="gallery-cat">WEB DESIGN</span>
+        </div>
+      </a>
+
+      <a href="projeto-brecho.html" class="gallery-card">
+        <div class="gallery-img-wrapper">
+          <div class="gallery-img" style="background-image:url('assets/Juju.png');"></div>
+        </div>
+        <div class="gallery-info">
+          <h2 class="gallery-name">BRECHÓ JUJUZINHA</h2>
+          <span class="gallery-cat">E-COMMERCE / DESIGN</span>
+        </div>
+      </a>
+    </div>
   </div>
 
   <footer class="footer">
@@ -251,25 +240,7 @@
 
   <script src="script.js"></script>
   <script>
-    const track = document.getElementById('projTrack');
-    const itemW = () => track.querySelector('.proj-item').offsetWidth + 3;
-    document.getElementById('projPrev').onclick = () => track.scrollBy({ left: -itemW(), behavior: 'smooth' });
-    document.getElementById('projNext').onclick = () => track.scrollBy({ left: itemW(), behavior: 'smooth' });
-
-    // drag
-    let startX, isDragging = false;
-    track.addEventListener('mousedown', e => { startX = e.clientX; isDragging = true; track.style.transition = 'none'; });
-    window.addEventListener('mouseup', e => {
-      if (!isDragging) return; isDragging = false; track.style.transition = '';
-      const diff = startX - e.clientX;
-      if (Math.abs(diff) > 50) track.scrollBy({ left: diff > 0 ? itemW() : -itemW(), behavior: 'smooth' });
-    });
-    track.addEventListener('dragstart', e => e.preventDefault());
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) track.scrollBy({ left: diff > 0 ? itemW() : -itemW(), behavior: 'smooth' });
-    });
+    // Se desejar adicionar lógica para o link "View more projects", adicione aqui
   </script>
 </body>
 </html>
