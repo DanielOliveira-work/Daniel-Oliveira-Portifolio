@@ -17,15 +17,12 @@ const translations = {
     'hero.cta.secondary': 'Ver mais',
 
     'about.title': 'Sobre mim',
-    'about.tagline': '🚀 Desenvolvedor Full-Stack | Gestão de Projetos & Visão Criativa',
-    'about.intro': 'Sou um desenvolvedor focado em transformar ideias complexas em soluções digitais de alto impacto. Atualmente cursando Análise e Desenvolvimento de Sistemas (ADS), combino o rigor da engenharia de software com a agilidade da gestão moderna.',
-    'about.frontend.title': 'Front-end com Olhar de Fotógrafo',
-    'about.frontend.desc': 'Não apenas código, mas interfaces intuitivas e responsivas. Minha paixão pela fotografia apurou minha percepção visual, garantindo um UX/UI que preza pela harmonia e performance.',
-    'about.backend.title': 'Back-end Robusto',
-    'about.backend.desc': 'Lógica de negócio com código limpo, seguro e escalável. Construo APIs pensando no futuro da manutenção e na velocidade da entrega.',
-    'about.closing': 'Minha marca registrada é a precisão. Acredito que o software, assim como uma boa fotografia, depende do detalhe e do timing perfeito.',
-    'about.cta': 'Se você busca um parceiro que domina a stack completa e entrega com velocidade, vamos construir algo notável.',
-    'about.photo': '📷 Nas horas vagas, exploro o mundo através das lentes. Confira meu olhar no Instagram.',
+    'about.item1': 'Transformo processos manuais em sistemas que funcionam sozinhos. Atuo na interseção entre tecnologia e negócio: entendo a dor do cliente em linguagem de negócio, desenho a solução técnica e coloco a mão no código para fazer acontecer — do diagnóstico à produção.',
+    'about.item2': '🤖 <strong>Desenvolvimento & IA:</strong> desenvolvo agentes de IA conversacional integrados ao WhatsApp (voz e texto) para triagem e qualificação de leads, com memória de contexto, leitura de documentos, assinatura digital e handoff humano — em produção, operando 24/7. Construí automação que eliminou ~5 dias de trabalho manual por semestre em processo acadêmico (engenharia reversa de schema Oracle + C#/.NET) e implemento integrações entre plataformas de gestão, ERPs e CRMs (monday.com, Make, APIs REST).',
+    'about.item3': '📋 <strong>Gestão de Projetos (Ponto Focal / Scrum Master):</strong> lidero múltiplos projetos simultâneos como ponte entre cliente, time técnico e executivos — do kickoff à entrega. Coordenei migração de banco de dados envolvendo 7 serviços e +300 tarefas, com documentação estruturada e rastreabilidade completa de decisões.',
+    'about.item4': '🤝 <strong>Customer Success:</strong> gerencio o relacionamento e a adoção de plataformas em uma carteira de +23 clientes (20 deles no Top 400 da Alest), realizando treinamentos de monday.com (Work Management e CRM), workshops, demos técnicas e consultoria recorrente (diagnóstico de uso, automações, dashboards e governança).',
+    'about.item5': '<strong>Como trabalho:</strong> documentação primeiro; aprendizado acelerado por IA (assumi um sistema legado Oracle/C# sem experiência prévia na stack e entreguei); comunicação como ferramenta técnica — traduzo arquitetura para diretoria e requisito de negócio para dev.',
+    'about.item6': 'Estudante de Análise e Desenvolvimento de Sistemas, evoluindo diariamente em Python, arquitetura de agentes de IA e cloud (AWS Developer Associate em andamento).',
 
     'projects.title': 'Projetos',
     'projects.card1.pill': 'Blog · Fotografia',
@@ -74,14 +71,14 @@ const translations = {
     'schedule.form.firstName': 'Nome*',
     'schedule.form.lastName': 'Sobrenome',
     'schedule.form.phone': 'Telefone*',
-    'schedule.form.email': 'Email*',
+    'schedule.form.email': 'E-mail (opcional)',
     'schedule.form.preference': 'Como prefere ser contatado?',
     'schedule.form.prefEmail': 'Email',
     'schedule.form.prefWhatsapp': 'WhatsApp',
     'schedule.form.submit': 'Enviar pedido',
     'schedule.form.status.success': 'Pedido enviado com sucesso. Em breve entrarei em contato.',
     'schedule.form.status.error': 'Não foi possível enviar seu pedido. Tente novamente em alguns minutos.',
-    'schedule.form.status.validation': 'Preencha nome, telefone e email para continuar.'
+    'schedule.form.status.validation': 'Preencha o nome para continuar.'
   },
   en: {
     'hero.badge': 'PORTFOLIO 2026',
@@ -99,14 +96,12 @@ const translations = {
     'hero.cta.secondary': 'See more',
 
     'about.title': 'About me',
-    'about.tagline': '🚀 Full-Stack Developer | Project Management & Creative Vision',
-    'about.intro': 'I am a developer focused on transforming complex ideas into high-impact digital solutions. Currently studying Systems Analysis and Development (ADS), I combine software engineering rigor with modern management agility.',
-    'about.frontend.title': "Front-end with a Photographer's Eye",
-    'about.frontend.desc': 'Not just code, but intuitive and responsive interfaces. My passion for photography sharpened my visual perception, ensuring UX/UI that values harmony and performance.',
-    'about.backend.title': 'Robust Back-end',
-    'about.backend.desc': 'Business logic with clean, secure and scalable code. I build APIs thinking about future maintenance and delivery speed.',
-    'about.closing': 'My trademark is precision. I believe software, like a great photograph, depends on detail and perfect timing.',
-    'about.cta': 'If you are looking for a partner who masters the full stack and delivers value fast, let’s build something remarkable.',
+    'about.item1': 'I transform manual processes into automated systems. I act at the intersection of technology and business: I understand the customer\'s pain in business language, design the technical solution, and write the code to make it happen — from diagnosis to production.',
+    'about.item2': '🤖 <strong>Development & AI:</strong> I develop conversational AI agents integrated with WhatsApp (voice and text) for lead screening and qualification, with context memory, document reading, digital signature, and human handoff — in production, operating 24/7. I built an automation that eliminated ~5 days of manual work per semester in an academic process (reverse engineering of Oracle schema + C#/.NET) and implemented integrations between management platforms, ERPs, and CRMs (monday.com, Make, REST APIs).',
+    'about.item3': '📋 <strong>Project Management (Focal Point / Scrum Master):</strong> I lead multiple simultaneous projects acting as a bridge between the client, technical team, and executives — from kickoff to delivery. Coordinated database migration involving 7 services and 300+ tasks, with structured documentation and full traceability of decisions.',
+    'about.item4': '🤝 <strong>Customer Success:</strong> I manage the relationship and platform adoption in a portfolio of 23+ clients (20 of them in Alest\'s Top 400), conducting monday.com training (Work Management and CRM), workshops, technical demos, and ongoing consulting (usage diagnosis, automations, dashboards, and governance).',
+    'about.item5': '<strong>How I work:</strong> documentation first; AI-accelerated learning (I took over a legacy Oracle/C# system with no prior experience in the stack and delivered it); communication as a technical tool — I translate architecture for directors and business requirements for devs.',
+    'about.item6': 'Systems Analysis and Development student, evolving daily in Python, AI agent architecture, and cloud (AWS Developer Associate in progress).',
 
     'projects.title': 'Projects',
     'projects.card1.pill': 'Blog · Photography',
@@ -155,14 +150,14 @@ const translations = {
     'schedule.form.firstName': 'First name*',
     'schedule.form.lastName': 'Last name',
     'schedule.form.phone': 'Phone*',
-    'schedule.form.email': 'Email*',
+    'schedule.form.email': 'E-mail (optional)',
     'schedule.form.preference': 'How do you prefer to be contacted?',
     'schedule.form.prefEmail': 'Email',
     'schedule.form.prefWhatsapp': 'WhatsApp',
     'schedule.form.submit': 'Send request',
     'schedule.form.status.success': 'Request sent successfully. I will contact you soon.',
     'schedule.form.status.error': 'Your request could not be sent. Please try again in a few minutes.',
-    'schedule.form.status.validation': 'Please fill in name, phone and email to continue.'
+    'schedule.form.status.validation': 'Please fill in your name to continue.'
   }
 };
 
@@ -205,12 +200,11 @@ function setupScheduleForm() {
     event.preventDefault();
 
     const firstName = form.firstName?.value.trim();
-    const lastName = form.lastName?.value.trim();
-    const phone = form.phone?.value.trim();
+    const email = form.email?.value.trim();
 
-    if (!firstName || !phone) {
+    if (!firstName) {
       if (statusEl) {
-        statusEl.textContent = translations[currentLang]['schedule.form.status.validation'] || 'Preencha nome e telefone para continuar.';
+        statusEl.textContent = translations[currentLang]['schedule.form.status.validation'] || 'Preencha o nome para continuar.';
         statusEl.className = 'form-status is-error';
       }
       return;
@@ -222,8 +216,10 @@ function setupScheduleForm() {
     }
     
     // Construct WhatsApp message
-    const nomeCompleto = lastName ? `${firstName} ${lastName}` : firstName;
-    const message = `Olá, me chamo ${nomeCompleto}. Meu telefone é ${phone}. Gostaria de falar sobre um projeto.`;
+    let message = `Olá, me chamo ${firstName}. Gostaria de falar sobre um projeto.`;
+    if (email) {
+      message += ` Meu e-mail é ${email}.`;
+    }
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/5511965746815?text=${encodedMessage}`;
     
