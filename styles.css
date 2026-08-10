@@ -845,7 +845,7 @@ body[data-theme="light"] .eyebrow {
 }
 
 .hero-primary {
-  background: #ff1a45;
+  background: #c41230;
   color: #ffffff;
   position: relative;
   z-index: 5;
@@ -1696,6 +1696,7 @@ html[data-theme="light"] .footer-links a:hover {
   .hero {
     padding: 2rem 0.5rem 2rem;
     gap: 1rem;
+    justify-content: flex-end;
   }
 
   .hero-frame {
@@ -1833,8 +1834,8 @@ html[data-theme="light"] .footer-links a:hover {
     width: clamp(120px, 32vw, 180px);
     position: fixed;
     right: 0;
-    bottom: 0;
-    top: auto;
+    top: 0;
+    bottom: auto;
     left: auto;
     opacity: 1;
     z-index: 99;
