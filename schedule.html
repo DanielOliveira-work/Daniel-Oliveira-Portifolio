@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entre em contato com Daniel Oliveira para agendar uma reunião ou iniciar um novo projeto.">
+  <meta name="keywords" content="Daniel Oliveira, contato, agendamento, freelance, desenvolvedor">
+  <meta property="og:title" content="Contato | Daniel Oliveira">
+  <meta property="og:description" content="Reserve um horário para conversarmos sobre seu próximo projeto.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/danielpng.png">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Contato | Daniel Oliveira</title>
   <script>
     (function() {
@@ -47,11 +54,11 @@
   </nav>
 
   <!-- Conteúdo principal centralizado -->
-  <div class="contact-page-body">
+  <main class="contact-page-body">
     <div class="contact-page-grid">
 
       <!-- Lado esquerdo: info + links -->
-      <div class="contact-page-info contact-page-form-wrap">
+      <div class="contact-page-info contact-page-form-wrap reveal-on-scroll">
         <span class="contact-page-eyebrow" data-i18n="schedule.text.title">Marque uma consulta gratuita</span>
         <h1 class="contact-page-title" data-i18n="schedule.title">Agende uma reunião</h1>
         <p class="contact-page-sub" data-i18n="schedule.subtitle">Reserve um horário para conversarmos sobre seu próximo projeto.</p>
@@ -78,7 +85,7 @@
       </div>
 
       <!-- Lado direito: formulário -->
-      <div class="contact-page-form-wrap">
+      <div class="contact-page-form-wrap reveal-on-scroll">
         <h2 class="contact-page-form-title" data-i18n="schedule.form.title">Dados para contato</h2>
         <form action="#" class="form-grid">
           <label>
@@ -98,8 +105,16 @@
       </div>
 
     </div>
-  </div>
+  </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      if(typeof emailjs !== 'undefined') {
+        emailjs.init("gOw9HU4lDh11J3jji");
+      }
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

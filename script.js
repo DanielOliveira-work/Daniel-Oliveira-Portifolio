@@ -15,12 +15,13 @@ const translations = {
     'hero.description': 'Desenvolvedor full-stack com experiência em gestão de projetos. Desenvolvo soluções completas com rapidez, do back-end ao front-end, entregando resultados alinhados ao seu negócio.',
     'hero.cta.primary': 'Agendar chamada de projeto',
     'hero.cta.secondary': 'Ver mais',
+    'hero.tech_stack': 'Tecnologias de Especialidade',
 
     'about.title': 'Sobre mim',
     'about.item1': 'Transformo processos manuais em sistemas que funcionam sozinhos. Atuo na interseção entre tecnologia e negócio: entendo a dor do cliente em linguagem de negócio, desenho a solução técnica e coloco a mão no código para fazer acontecer — do diagnóstico à produção.',
-    'about.item2': '🤖 <strong>Desenvolvimento & IA:</strong> desenvolvo agentes de IA conversacional integrados ao WhatsApp (voz e texto) para triagem e qualificação de leads, com memória de contexto, leitura de documentos, assinatura digital e handoff humano — em produção, operando 24/7. Construí automação que eliminou ~5 dias de trabalho manual por semestre em processo acadêmico (engenharia reversa de schema Oracle + C#/.NET) e implemento integrações entre plataformas de gestão, ERPs e CRMs (monday.com, Make, APIs REST).',
-    'about.item3': '📋 <strong>Gestão de Projetos (Ponto Focal / Scrum Master):</strong> lidero múltiplos projetos simultâneos como ponte entre cliente, time técnico e executivos — do kickoff à entrega. Coordenei migração de banco de dados envolvendo 7 serviços e +300 tarefas, com documentação estruturada e rastreabilidade completa de decisões.',
-    'about.item4': '🤝 <strong>Customer Success:</strong> gerencio o relacionamento e a adoção de plataformas em uma carteira de +23 clientes (20 deles no Top 400 da Alest), realizando treinamentos de monday.com (Work Management e CRM), workshops, demos técnicas e consultoria recorrente (diagnóstico de uso, automações, dashboards e governança).',
+    'about.item2': '<strong>Desenvolvimento & IA:</strong> desenvolvo agentes de IA conversacional integrados ao WhatsApp (voz e texto) para triagem e qualificação de leads, com memória de contexto, leitura de documentos, assinatura digital e handoff humano — em produção, operando 24/7. Construí automação que eliminou ~5 dias de trabalho manual por semestre em processo acadêmico (engenharia reversa de schema Oracle + C#/.NET) e implemento integrações entre plataformas de gestão, ERPs e CRMs (monday.com, Make, APIs REST).',
+    'about.item3': '<strong>Gestão de Projetos (Ponto Focal / Scrum Master):</strong> lidero múltiplos projetos simultâneos como ponte entre cliente, time técnico e executivos — do kickoff à entrega. Coordenei migração de banco de dados envolvendo 7 serviços e +300 tarefas, com documentação estruturada e rastreabilidade completa de decisões.',
+    'about.item4': '<strong>Customer Success:</strong> gerencio o relacionamento e a adoção de plataformas em uma carteira de +23 clientes (20 deles no Top 400 da Alest), realizando treinamentos de monday.com (Work Management e CRM), workshops, demos técnicas e consultoria recorrente (diagnóstico de uso, automações, dashboards e governança).',
     'about.item5': '<strong>Como trabalho:</strong> documentação primeiro; aprendizado acelerado por IA (assumi um sistema legado Oracle/C# sem experiência prévia na stack e entreguei); comunicação como ferramenta técnica — traduzo arquitetura para diretoria e requisito de negócio para dev.',
     'about.item6': 'Estudante de Análise e Desenvolvimento de Sistemas, evoluindo diariamente em Python, arquitetura de agentes de IA e cloud (AWS Developer Associate em andamento).',
 
@@ -94,12 +95,13 @@ const translations = {
     'hero.description': 'Full-stack developer with experience in project management. I build complete solutions fast, from back-end to front-end, delivering results aligned with your business.',
     'hero.cta.primary': 'Book a project call',
     'hero.cta.secondary': 'See more',
+    'hero.tech_stack': 'Core Stack',
 
     'about.title': 'About me',
     'about.item1': 'I transform manual processes into automated systems. I act at the intersection of technology and business: I understand the customer\'s pain in business language, design the technical solution, and write the code to make it happen — from diagnosis to production.',
-    'about.item2': '🤖 <strong>Development & AI:</strong> I develop conversational AI agents integrated with WhatsApp (voice and text) for lead screening and qualification, with context memory, document reading, digital signature, and human handoff — in production, operating 24/7. I built an automation that eliminated ~5 days of manual work per semester in an academic process (reverse engineering of Oracle schema + C#/.NET) and implemented integrations between management platforms, ERPs, and CRMs (monday.com, Make, REST APIs).',
-    'about.item3': '📋 <strong>Project Management (Focal Point / Scrum Master):</strong> I lead multiple simultaneous projects acting as a bridge between the client, technical team, and executives — from kickoff to delivery. Coordinated database migration involving 7 services and 300+ tasks, with structured documentation and full traceability of decisions.',
-    'about.item4': '🤝 <strong>Customer Success:</strong> I manage the relationship and platform adoption in a portfolio of 23+ clients (20 of them in Alest\'s Top 400), conducting monday.com training (Work Management and CRM), workshops, technical demos, and ongoing consulting (usage diagnosis, automations, dashboards, and governance).',
+    'about.item2': '<strong>Development & AI:</strong> I develop conversational AI agents integrated with WhatsApp (voice and text) for lead screening and qualification, with context memory, document reading, digital signature, and human handoff — in production, operating 24/7. I built an automation that eliminated ~5 days of manual work per semester in an academic process (reverse engineering of Oracle schema + C#/.NET) and implemented integrations between management platforms, ERPs, and CRMs (monday.com, Make, REST APIs).',
+    'about.item3': '<strong>Project Management (Focal Point / Scrum Master):</strong> I lead multiple simultaneous projects acting as a bridge between the client, technical team, and executives — from kickoff to delivery. Coordinated database migration involving 7 services and 300+ tasks, with structured documentation and full traceability of decisions.',
+    'about.item4': '<strong>Customer Success:</strong> I manage the relationship and platform adoption in a portfolio of 23+ clients (20 of them in Alest\'s Top 400), conducting monday.com training (Work Management and CRM), workshops, technical demos, and ongoing consulting (usage diagnosis, automations, dashboards, and governance).',
     'about.item5': '<strong>How I work:</strong> documentation first; AI-accelerated learning (I took over a legacy Oracle/C# system with no prior experience in the stack and delivered it); communication as a technical tool — I translate architecture for directors and business requirements for devs.',
     'about.item6': 'Systems Analysis and Development student, evolving daily in Python, AI agent architecture, and cloud (AWS Developer Associate in progress).',
 
@@ -220,6 +222,16 @@ function setupScheduleForm() {
     if (email) {
       message += ` Meu e-mail é ${email}.`;
     }
+
+    // Capture lead via EmailJS
+    if (typeof emailjs !== 'undefined') {
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        firstName: firstName,
+        email: email || 'Não informado',
+        message: message
+      }).catch(err => console.error('EmailJS Error:', err));
+    }
+
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/5511965746815?text=${encodedMessage}`;
     
@@ -367,27 +379,6 @@ function setupThemeToggle() {
     document.body.setAttribute('data-theme', theme);
     document.documentElement.style.colorScheme = theme;
     localStorage.setItem('theme', theme);
-
-    // injeta/atualiza style tag para forçar cor em tempo real
-    let styleTag = document.getElementById('theme-override');
-    if (!styleTag) {
-      styleTag = document.createElement('style');
-      styleTag.id = 'theme-override';
-      document.head.appendChild(styleTag);
-    }
-    if (theme === 'light') {
-      styleTag.textContent = `
-        *:not(.footer-links a):not(.footer-links a *):not(.footer-links):not(#splash):not(#splash *):not(.proj-card):not(.proj-card *) { color: #0d0f1a !important; }
-        .hero-highlight, .hero-badge { color: #ff335c !important; }
-        .hero-primary, .schedule-submit { color: #08090f !important; }
-        .lang-option.is-active { color: #ffffff !important; }
-        .footer-links a { color: rgba(245,245,245,0.7) !important; }
-        .footer-links a:hover { color: #ff335c !important; }
-        .proj-card-title, .proj-card-cat, .proj-card-label { color: #ffffff !important; }
-      `;
-    } else {
-      styleTag.textContent = '';
-    }
   }
 
   const saved = localStorage.getItem('theme') || 'dark';
@@ -399,11 +390,33 @@ function setupThemeToggle() {
   });
 }
 
+function setupScrollReveal() {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+    observer.observe(el);
+  });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   setupLangSwitch();
   setupSmoothScroll();
   setupScheduleForm();
   setupSlider();
   setupThemeToggle();
+  setupScrollReveal();
   applyTranslations(currentLang);
 });
