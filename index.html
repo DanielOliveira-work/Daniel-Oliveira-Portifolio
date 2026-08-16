@@ -96,25 +96,29 @@
     <p id="splash-name">Daniel Oliveira</p>
   </div>
   <script>
-    // Splash — sempre que carregar a página
     const splashEl = document.getElementById('splash');
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        document.getElementById('splash-phrase').style.opacity = '1';
-        document.getElementById('splash-phrase').style.transform = 'translateY(0)';
-      }, 400);
-      setTimeout(() => {
-        document.getElementById('splash-line').style.width = '180px';
-      }, 1200);
-      setTimeout(() => {
-        document.getElementById('splash-name').style.opacity = '1';
-        document.getElementById('splash-name').style.transform = 'translateY(0)';
-      }, 1500);
-      setTimeout(() => {
-        splashEl.style.opacity = '0';
-        setTimeout(() => splashEl.remove(), 700);
-      }, 4000);
-    });
+    if (sessionStorage.getItem('splashPlayed')) {
+      splashEl.remove();
+    } else {
+      sessionStorage.setItem('splashPlayed', 'true');
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          document.getElementById('splash-phrase').style.opacity = '1';
+          document.getElementById('splash-phrase').style.transform = 'translateY(0)';
+        }, 400);
+        setTimeout(() => {
+          document.getElementById('splash-line').style.width = '180px';
+        }, 1200);
+        setTimeout(() => {
+          document.getElementById('splash-name').style.opacity = '1';
+          document.getElementById('splash-name').style.transform = 'translateY(0)';
+        }, 1500);
+        setTimeout(() => {
+          splashEl.style.opacity = '0';
+          setTimeout(() => splashEl.remove(), 700);
+        }, 4000);
+      });
+    }
   </script>
   <header class="hero">
     <div class="hero-bg-layer" aria-hidden="true"></div>
